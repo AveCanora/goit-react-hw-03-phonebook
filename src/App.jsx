@@ -52,13 +52,20 @@ class App extends Component {
     });
   };
   componentDidMount() {
-    console.log('App componentDidMount');
-  }
+
+    const contacts = localStorage.getItem('contacts');
+    const parselContacts = JSON.parse(contacts);
+    if (parselContacts) { this.setState({ contacts: parselContacts }); }
+
+
+  };
   componentDidUpdate(prevProps, prevState) {
-    console.log('App componentDidUpdate');
-    console.log(prevState);
-    console.log(this.state);
-  }
+
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Обновилось поле contacts');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  };
 
   render() {
     const { contacts, filter } = this.state;
@@ -66,7 +73,9 @@ class App extends Component {
       <div className={styles.container}>
         <h1>Phonebook</h1>
         <ContactForm
-          onSubmit={this.addContactHandler}
+          handlers={{
+            onSubmit: this.addContactHandler,
+          }}
         />
         <h2>Contacts</h2>
         <Filter
