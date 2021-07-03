@@ -1,0 +1,36 @@
+.ContactsForm {
+  margin-bottom: 20px;
+  border: 1px solid#000000;
+}
+.field {
+  width: 380px;
+  padding: 10px;
+}
+.label {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: bold;
+}
+.input {
+  margin-top: 5px;
+  border: 1px solid lightslategrey;
+}
+
+.input:focus {
+  box-shadow: 0 0 2px 2px #4794fd;
+  outline: none;
+}
+
+.button {
+  border-radius: 5px;
+  border: 1px solid rgb(132, 142, 151);
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: small;
+}
+.button:hover {
+  background-color: #4794fd;
+}
