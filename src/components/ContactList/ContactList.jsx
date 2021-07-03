@@ -12,7 +12,7 @@ class ContactList extends Component {
     }),
   };
 
-  find = (list, filter) => {
+  findContact = (list, filter) => {
     const search = filter.trim().toLowerCase();
     if (filter) {
       return list.filter(({ name }) => name.toLowerCase().indexOf(search) >= 0);
@@ -25,7 +25,7 @@ class ContactList extends Component {
       handlers: { onClick },
       options: { contacts, filter },
     } = this.props;
-    const filtered = this.find(contacts, filter);
+    const filtered = this.findContact(contacts, filter);
 
     return (
       <ul className={styles.ContactsList}>

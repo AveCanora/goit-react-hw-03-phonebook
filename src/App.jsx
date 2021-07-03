@@ -51,6 +51,14 @@ class App extends Component {
       };
     });
   };
+  componentDidMount() {
+    console.log('App componentDidMount');
+  }
+  componentDidUpdate(prevProps, prevState) {
+    console.log('App componentDidUpdate');
+    console.log(prevState);
+    console.log(this.state);
+  }
 
   render() {
     const { contacts, filter } = this.state;
@@ -58,9 +66,7 @@ class App extends Component {
       <div className={styles.container}>
         <h1>Phonebook</h1>
         <ContactForm
-          handlers={{
-            onSubmit: this.addContactHandler,
-          }}
+          onSubmit={this.addContactHandler}
         />
         <h2>Contacts</h2>
         <Filter
