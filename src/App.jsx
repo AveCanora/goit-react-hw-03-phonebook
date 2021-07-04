@@ -24,7 +24,22 @@ class App extends Component {
     ],
     filter: "",
   };
+componentDidMount() {
 
+    const contacts = localStorage.getItem('contacts');
+    const parselContacts = JSON.parse(contacts);
+    if (parselContacts) { this.setState({ contacts: parselContacts }); }
+
+
+  };
+  componentDidUpdate(prevProps, prevState) {
+
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Обновилось поле contacts');
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  };
+  
   onChangeInput = (event) => {
     const { name, value } = event.currentTarget;
     this.setState({ [name]: value });
@@ -51,21 +66,7 @@ class App extends Component {
       };
     });
   };
-  componentDidMount() {
-
-    const contacts = localStorage.getItem('contacts');
-    const parselContacts = JSON.parse(contacts);
-    if (parselContacts) { this.setState({ contacts: parselContacts }); }
-
-
-  };
-  componentDidUpdate(prevProps, prevState) {
-
-    if (this.state.contacts !== prevState.contacts) {
-      console.log('Обновилось поле contacts');
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  };
+  
 
   render() {
     const { contacts, filter } = this.state;
